@@ -1,0 +1,175 @@
+
+
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Rota Livre</title>
+
+<style>
+
+body{font-family:Arial;background:#f1f7f3;color:#173322;margin:0;padding:20px}
+
+header{background:#16834a;color:white;padding:20px;border-radius:18px}
+
+h1{margin:0}
+
+.card{background:white;padding:18px;margin:15px 0;border-radius:16px}
+
+button{padding:13px;border:0;border-radius:10px;background:#16834a;color:white;font-weight:bold}
+
+input,select{width:100%;padding:12px;margin:8px 0;box-sizing:border-box;border:1px solid #ccc;border-radius:10px}
+
+label{display:block;margin-top:12px}
+
+.price{font-size:22px;color:#16834a;font-weight:bold}
+
+.hidden{display:none}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>↗ Rota Livre</h1>
+
+<p>Mobilidade com liberdade</p>
+
+</header>
+
+<div class="card">
+
+<button onclick="show('pass')">Passageiro</button>
+
+<button onclick="show('driver')">Motorista</button>
+
+<section id="pass">
+
+<h2>Para onde vamos?</h2>
+
+<label>Origem</label>
+
+<input id="origin" placeholder="Digite sua origem">
+
+<label>Destino</label>
+
+<input id="destination" placeholder="Digite seu destino">
+
+<label>Categoria</label>
+
+<select id="category">
+
+<option>Rota Moto</option>
+
+<option>Rota Carro</option>
+
+<option>Rota Top</option>
+
+</select>
+
+<button onclick="requestRide()">Solicitar corrida</button>
+
+<p id="result"></p>
+
+</section>
+
+<section id="driver" class="hidden">
+
+<h2>Cadastro de motorista</h2>
+
+<label>Nome</label>
+
+<input placeholder="Seu nome">
+
+<label>Telefone</label>
+
+<input placeholder="Seu telefone">
+
+<label>Veículo</label>
+
+<select id="vehicle" onchange="fee()">
+
+<option>Rota Moto</option>
+
+<option>Rota Carro</option>
+
+<option>Rota Top</option>
+
+</select>
+
+<p>Taxa semanal:</p>
+
+<div class="price" id="price">R$ 49,99</div>
+
+<p>Comissão por corrida: 0%</p>
+
+<button onclick="alert('Cadastro demonstrativo. Ainda não conectado.')">Continuar cadastro</button>
+
+</section>
+
+</div>
+
+<div class="card">
+
+<h2>Planos semanais</h2>
+
+<p>🏍️ Rota Moto — <b>R$ 49,99</b></p>
+
+<p>🚗 Rota Carro — <b>R$ 99,99</b></p>
+
+<p>⭐ Rota Top — <b>R$ 149,99</b></p>
+
+<p>Comissão: 0%</p>
+
+</div>
+
+<script>
+
+function show(id){
+
+document.getElementById('pass').classList.toggle('hidden',id!=='pass');
+
+document.getElementById('driver').classList.toggle('hidden',id!=='driver');
+
+}
+
+function fee(){
+
+let v=document.getElementById('vehicle').value;
+
+document.getElementById('price').textContent=
+
+v==='Rota Moto'?'R$ 49,99':
+
+v==='Rota Carro'?'R$ 99,99':'R$ 149,99';
+
+}
+
+function requestRide(){
+
+let a=document.getElementById('origin').value;
+
+let b=document.getElementById('destination').value;
+
+if(!a||!b){alert('Preencha origem e destino');return;}
+
+document.getElementById('result').textContent=
+
+'Pedido demonstrativo: '+a+' até '+b+'. Nenhum motorista foi chamado.';
+
+}
+
+</script>
+
+</body>
+
+</html>
